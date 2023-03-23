@@ -3,8 +3,11 @@
 //import { contatos } from "https://fernandoleonid.github.io/whatsApp-senai-1-2023/recursos/contatos.js"
 
 import { pesquisarMensagens } from "./mensagemAPI.js"
+import { pesquisarDados } from "./mensagemAPI.js"
 
-const contatos = await pesquisarMensagens('11987876567')
+const contatos = await pesquisarMensagens('11966578996')
+const dados = await pesquisarDados('11966578996')
+
 let cont = 1;
 const adicionarId = (contato) => {
   contato.id = cont++;
@@ -13,6 +16,52 @@ const adicionarId = (contato) => {
 
 const contatosComId = contatos.map(adicionarId);
 const main = document.getElementById('conteudo')
+
+// Função para mudar foto de perfil
+
+const fotoPerfil = (fotoPerfil) => {
+  const aboutMe = document.getElementById('divPerfil')
+  const img = document.createElement('img');
+  img.classList.add('profile-photo');
+  img.classList.add('rounded-circle');
+  img.classList.add('mb-2');
+  img.classList.add('mt-3');
+  img.classList.add('ml-2');
+  img.classList.add('mr-3');
+  img.alt = 'foto de perfil';
+  img.src = dados.img
+  aboutMe.append(img)
+}
+
+fotoPerfil()
+
+const fotoPerfil2 = (fotoPerfil) => {
+  const aboutMe = document.getElementById('aboutme')
+  const text = document.getElementById('text')
+  const img = document.createElement('img');
+  img.classList.add('profile-photo');
+  img.classList.add('rounded-circle');
+  img.classList.add('mb-2');
+  img.classList.add('mt-3');
+  img.classList.add('ml-2');
+  img.classList.add('mr-3');
+  img.alt = 'foto de perfil';
+  img.id = 'perfilConfiguracoes'
+  img.src = dados.img
+
+  const span1 = document.createElement('span')
+  span1.classList.add('font-weight-bold')
+  span1.innerHTML = dados.nome
+
+  const icone = document.createElement('i')
+  icone.classList.add('far')
+  icone.classList.add('fa-heart')
+  span1.append(icone)
+  text.append(span1)
+  aboutMe.append(img, text)
+}
+
+fotoPerfil2()
 
 // Função para criar a lista
 
